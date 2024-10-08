@@ -18,6 +18,21 @@ int main(int argc, char *argv[]) {
     memberLayout0->addWidget(memberLabel0);
     memberTab0->setLayout(memberLayout0);
 
+    QWidget *memberTab1 = new QWidget;
+    QLabel *memberLabel1 = new QLabel("組員1=>潘怡潔ID:41243107");
+    QVBoxLayout *memberLayout1 = new QVBoxLayout;
+    QPushButton *colorButton = new QPushButton("color select");
+    memberLayout1->addWidget(memberLabel1);
+    memberLayout1->addWidget(colorButton);
+    memberTab1->setLayout(memberLayout1);
+
+
+    QObject::connect(colorButton, &QPushButton::clicked, [=]() {
+        QColor color = QColorDialog::getColor(Qt::white, nullptr, "選擇文字顏色");
+        if (color.isValid()) {
+            QString colorName = color.name();
+            memberLabel0->setStyleSheet(QString("color: %1;").arg(colorName));
+          
     QWidget *memberTab2 = new QWidget;
     QLabel *memberLabel2 = new QLabel("組員2=>雷務馨ID:40643149");
     QPushButton *styleButton = new QPushButton("Front select");
