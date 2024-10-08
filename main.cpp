@@ -32,6 +32,20 @@ int main(int argc, char *argv[]) {
         if (color.isValid()) {
             QString colorName = color.name();
             memberLabel0->setStyleSheet(QString("color: %1;").arg(colorName));
+          
+    QWidget *memberTab2 = new QWidget;
+    QLabel *memberLabel2 = new QLabel("組員2=>雷務馨ID:40643149");
+    QPushButton *styleButton = new QPushButton("Front select");
+    QVBoxLayout *member2Layout = new QVBoxLayout;
+    member2Layout->addWidget(memberLabel2);
+    member2Layout->addWidget(styleButton);
+    memberTab2->setLayout(member2Layout);
+
+    QObject::connect(styleButton, &QPushButton::clicked, [=]() {
+        bool ok;
+        QFont font = QFontDialog::getFont(&ok, memberLabel0->font(), nullptr, "選擇字體");
+        if (ok) {
+            memberLabel0->setFont(font);
         }
     });
 
