@@ -18,6 +18,21 @@ int main(int argc, char *argv[]) {
     memberLayout0->addWidget(memberLabel0);
     memberTab0->setLayout(memberLayout0);
 
+    QWidget *memberTab3 = new QWidget;
+    QLabel *memberLabel3 = new QLabel("組員3=>吳宗恆ID:50915130");
+    QPushButton *fileButton = new QPushButton("File select");
+    QVBoxLayout *memberLayout3 = new QVBoxLayout;
+    memberLayout3->addWidget(memberLabel3);
+    memberLayout3->addWidget(fileButton);
+    memberTab3->setLayout(memberLayout3);
+
+    QObject::connect(fileButton, &QPushButton::clicked, [=]() {
+        QString filePath = QFileDialog::getOpenFileName(nullptr, "選擇檔案", "", "所有檔案 (*.*)");
+        if (!filePath.isEmpty()) {
+            memberLabel0->setText(filePath);
+        }
+    });
+
     QWidget *memberTab1 = new QWidget;
     QLabel *memberLabel1 = new QLabel("組員1=>潘怡潔ID:41243107");
     QVBoxLayout *memberLayout1 = new QVBoxLayout;
@@ -32,7 +47,8 @@ int main(int argc, char *argv[]) {
         if (color.isValid()) {
             QString colorName = color.name();
             memberLabel0->setStyleSheet(QString("color: %1;").arg(colorName));
-          
+        }
+    })
     QWidget *memberTab2 = new QWidget;
     QLabel *memberLabel2 = new QLabel("組員2=>雷務馨ID:40643149");
     QPushButton *styleButton = new QPushButton("Front select");
